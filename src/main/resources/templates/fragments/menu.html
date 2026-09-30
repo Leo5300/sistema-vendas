@@ -1,22 +1,21 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <body>
-<nav th:fragment="menu(ativo)" class="navbar navbar-expand navbar-dark shadow-sm"
-     style="background: linear-gradient(90deg, #1e3a5f, #2c5d8f);">
+<nav th:fragment="menu(ativo)" class="navbar navbar-expand navbar-dark menu">
     <div class="container">
-        <a class="navbar-brand fw-bold" th:href="@{/pedidos}">Sistema de Vendas</a>
+        <a class="navbar-brand fw-semibold" th:href="@{/pedidos}">Sistema de Vendas</a>
         <ul class="navbar-nav ms-auto gap-1">
             <li class="nav-item">
-                <a class="nav-link px-3 rounded" th:href="@{/clientes}"
-                   th:classappend="${ativo == 'clientes'} ? 'active bg-white bg-opacity-25 fw-semibold'">Clientes</a>
+                <a class="nav-link px-3" th:href="@{/clientes}"
+                   th:classappend="${ativo == 'clientes'} ? 'active'">Clientes</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link px-3 rounded" th:href="@{/produtos}"
-                   th:classappend="${ativo == 'produtos'} ? 'active bg-white bg-opacity-25 fw-semibold'">Produtos</a>
+                <a class="nav-link px-3" th:href="@{/produtos}"
+                   th:classappend="${ativo == 'produtos'} ? 'active'">Produtos</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link px-3 rounded" th:href="@{/pedidos}"
-                   th:classappend="${ativo == 'pedidos'} ? 'active bg-white bg-opacity-25 fw-semibold'">Pedidos</a>
+                <a class="nav-link px-3" th:href="@{/pedidos}"
+                   th:classappend="${ativo == 'pedidos'} ? 'active'">Pedidos</a>
             </li>
         </ul>
     </div>

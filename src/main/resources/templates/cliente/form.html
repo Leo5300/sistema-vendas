@@ -5,6 +5,7 @@
     <title th:unless="${cliente.id == null}">Edição de Cliente</title>
     <title th:if="${cliente.id == null}">Cadastro de Cliente</title>
     <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/css/app.css}" rel="stylesheet">
 </head>
 <body>
 <div th:replace="~{fragments/menu :: menu('clientes')}"></div>
