@@ -6,6 +6,7 @@
     <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
 </head>
 <body>
+<div th:replace="~{fragments/menu :: menu('pedidos')}"></div>
 <div class="container mt-4">
     <h1>Pedido Nº <span th:text="${pedido.id}"></span></h1>
 
