@@ -267,3 +267,11 @@ h3, h4, h5 {
     background: #eceef1 !important;
     color: #5b6470;
 }
+
+/* Login */
+.form-group-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+}

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security6">
+<head>
+    <meta charset="UTF-8">
+    <title>Sistema de Vendas</title>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/css/app.css}" rel="stylesheet">
+</head>
+<body>
+<div th:replace="~{fragments/menu :: menu('')}"></div>
+<div class="container mt-4">
+    <h1>Sistema de Vendas</h1>
+
+    <p>Olá, <strong sec:authentication="principal.nome"></strong>! Escolha uma opção:</p>
+
+    <!-- Clientes e Produtos aparecem apenas para ADMIN -->
+    <div class="d-flex flex-wrap gap-2">
+        <a th:href="@{/pedidos}" class="btn btn-primary">Gerenciar Pedidos</a>
+        <a th:href="@{/clientes}" class="btn btn-primary" sec:authorize="hasRole('ADMIN')">Gerenciar Clientes</a>
+        <a th:href="@{/produtos}" class="btn btn-primary" sec:authorize="hasRole('ADMIN')">Gerenciar Produtos</a>
+    </div>
+</div>
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>

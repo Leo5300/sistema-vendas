@@ -29,20 +29,20 @@ public class ProdutoController {
     // Listar produtos
     @GetMapping
     public ModelAndView list() {
-        return new ModelAndView("produto/list", Map.of("produtos", produtoService.listarTodos()));
+        return new ModelAndView("produtos/list", Map.of("produtos", produtoService.listarTodos()));
     }
 
     // Formulário de cadastro
     @GetMapping("/novo")
     public ModelAndView create() {
-        return new ModelAndView("produto/form", Map.of("produto", new Produto()));
+        return new ModelAndView("produtos/form", Map.of("produto", new Produto()));
     }
 
     // Salvar produto
     @PostMapping("/novo")
     public String create(@Valid Produto produto, BindingResult result) {
         if (result.hasErrors()) {
-            return "produto/form";
+            return "produtos/form";
         }
         produtoService.salvar(produto);
         return "redirect:/produtos";
@@ -53,7 +53,7 @@ public class ProdutoController {
     public ModelAndView edit(@PathVariable Long id) {
         var optionalProduto = produtoService.buscarPorId(id);
         if (optionalProduto.isPresent()) {
-            return new ModelAndView("produto/form", Map.of("produto", optionalProduto.get()));
+            return new ModelAndView("produtos/form", Map.of("produto", optionalProduto.get()));
         }
         throw new ResponseStatusException(HttpStatus.NOT_FOUND);
     }
@@ -62,7 +62,7 @@ public class ProdutoController {
     @PostMapping("/edit/{id}")
     public String edit(@Valid Produto produto, BindingResult result) {
         if (result.hasErrors()) {
-            return "produto/form";
+            return "produtos/form";
         }
 
         produtoService.atualizar(produto.getId(), produto);
@@ -75,7 +75,7 @@ public class ProdutoController {
     public ModelAndView delete(@PathVariable Long id) {
         var optionalProduto = produtoService.buscarPorId(id);
         if (optionalProduto.isPresent()) {
-            return new ModelAndView("produto/delete", Map.of("produto", optionalProduto.get()));
+            return new ModelAndView("produtos/delete", Map.of("produto", optionalProduto.get()));
         }
         throw new ResponseStatusException(HttpStatus.NOT_FOUND);
     }

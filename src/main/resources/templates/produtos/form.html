@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security6">
 <head>
     <meta charset="UTF-8">
     <title th:unless="${produto.id == null}">Edição de Produto</title>
@@ -27,7 +27,7 @@
 
         <div class="mb-3">
             <label for="preco" class="form-label">Preço</label>
-            <input type="number" class="form-control" id="preco" th:field="*{preco}">
+            <input type="number" step="0.01" min="0.01" class="form-control" id="preco" th:field="*{preco}">
             <div class="text-danger" th:if="${#fields.hasErrors('preco')}" th:errors="*{preco}"></div>
         </div>
 

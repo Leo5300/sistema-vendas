@@ -29,20 +29,20 @@ public class ClienteController {
     // Listar clientes
     @GetMapping
     public ModelAndView list() {
-        return new ModelAndView("cliente/list", Map.of("clientes", clienteService.listarTodos()));
+        return new ModelAndView("clientes/list", Map.of("clientes", clienteService.listarTodos()));
     }
 
     // Formulário de cadastro
     @GetMapping("/novo")
     public ModelAndView create() {
-        return new ModelAndView("cliente/form", Map.of("cliente", new Cliente()));
+        return new ModelAndView("clientes/form", Map.of("cliente", new Cliente()));
     }
 
     // Salvar cliente
     @PostMapping("/novo")
     public String create(@Valid Cliente cliente, BindingResult result) {
         if (result.hasErrors()) {
-            return "cliente/form";
+            return "clientes/form";
         }
 
         try {
@@ -53,7 +53,7 @@ public class ClienteController {
             } else if (e.getMessage().contains("E-mail")) {
                 result.rejectValue("email", "error.cliente", e.getMessage());
             }
-            return "cliente/form";
+            return "clientes/form";
         }
 
         return "redirect:/clientes";
@@ -64,7 +64,7 @@ public class ClienteController {
     public ModelAndView edit(@PathVariable Long id) {
         var optionalCliente = clienteService.buscarPorId(id);
         if (optionalCliente.isPresent()) {
-            return new ModelAndView("cliente/form", Map.of("cliente", optionalCliente.get()));
+            return new ModelAndView("clientes/form", Map.of("cliente", optionalCliente.get()));
         }
         throw new ResponseStatusException(HttpStatus.NOT_FOUND);
     }
@@ -73,7 +73,7 @@ public class ClienteController {
     @PostMapping("/edit/{id}")
     public String edit(@Valid Cliente cliente, BindingResult result) {
         if (result.hasErrors()) {
-            return "cliente/form";
+            return "clientes/form";
         }
 
         try {
@@ -84,7 +84,7 @@ public class ClienteController {
             } else if (e.getMessage().contains("E-mail")) {
                 result.rejectValue("email", "error.cliente", e.getMessage());
             }
-            return "cliente/form";
+            return "clientes/form";
         }
 
         return "redirect:/clientes";
@@ -95,7 +95,7 @@ public class ClienteController {
     public ModelAndView delete(@PathVariable Long id) {
         var optionalCliente = clienteService.buscarPorId(id);
         if (optionalCliente.isPresent()) {
-            return new ModelAndView("cliente/delete", Map.of("cliente", optionalCliente.get()));
+            return new ModelAndView("clientes/delete", Map.of("cliente", optionalCliente.get()));
         }
         throw new ResponseStatusException(HttpStatus.NOT_FOUND);
     }

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security6">
+<head>
+    <meta charset="UTF-8">
+    <title>Sair | Sistema de Vendas</title>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/css/app.css}" rel="stylesheet">
+</head>
+<body>
+<div th:replace="~{fragments/menu :: menu('')}"></div>
+<div class="container mt-4" style="max-width: 520px;">
+    <h1>Sair da aplicação</h1>
+
+    <p>
+        <span sec:authentication="principal.nome"></span>, tem certeza que deseja sair?
+    </p>
+
+    <!-- O POST /logout é processado pelo Spring Security, que redireciona para /login?logout -->
+    <form method="post" th:action="@{/logout}">
+        <button type="submit" class="btn btn-danger">Sair</button>
+        <a th:href="@{/}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>

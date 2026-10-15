@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Sistema de Vendas</title>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/css/app.css}" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-5" style="max-width: 420px;">
+    <h1>Sistema de Vendas</h1>
+
+    <div class="alert alert-danger" th:if="${param.error}">
+        E-mail ou senha inválidos!
+    </div>
+
+    <div class="alert alert-success" th:if="${param.logout}">
+        Você saiu da aplicação.
+    </div>
+
+    <!-- O POST /login é processado pelo Spring Security (campos username e password) -->
+    <form method="post" th:action="@{/login}">
+        <div class="mb-3">
+            <label for="username" class="form-label">E-mail</label>
+            <input type="email" id="username" name="username" class="form-control"
+                   placeholder="seuemail@exemplo.com" required autofocus>
+        </div>
+
+        <div class="mb-3">
+            <label for="password" class="form-label">Senha</label>
+            <input type="password" id="password" name="password" class="form-control" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100">Entrar</button>
+
+        <div class="form-group-checkbox">
+            <input id="remember-me" name="remember-me" type="checkbox">
+            <label for="remember-me">Lembrar de mim</label>
+        </div>
+    </form>
+</div>
+</body>
+</html>

@@ -31,11 +31,11 @@ public class Cliente {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotBlank(message = "Nome é obrigatório.")
-    @Column(nullable = false)
+    @Column(nullable = false, length = 100)
     private String nome;
     @NotBlank(message = "E-mail é obrigatório.")
     @Email(message = "E-mail inválido.")
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false, unique = true, length = 100)
     private String email;
     @NotBlank(message = "CPF é obrigatório.")
     @CPF(message = "CPF inválido")
@@ -43,25 +43,27 @@ public class Cliente {
     @Column(nullable = false, unique = true, length = 11)
     private String cpf;
     @NotBlank(message = "Telefone é obrigatório.")
-    @Column(nullable = false)
+    @Column(nullable = false, length = 20)
     private String telefone;
     @NotBlank(message = "Logradouro é obrigatório.")
-    @Column(nullable = false)
+    @Column(nullable = false, length = 100)
     private String logradouro;
+    @Column(length = 10)
     private String numero;
+    @Column(length = 50)
     private String complemento;
     @NotBlank(message = "Bairro é obrigatório.")
-    @Column(nullable = false)
+    @Column(nullable = false, length = 50)
     private String bairro;
     @NotBlank(message = "Cidade é obrigatório.")
-    @Column(nullable = false)
+    @Column(nullable = false, length = 50)
     private String cidade;
     @NotBlank(message = "UF é obrigatório")
     @Size(min = 2, max = 2, message = "UF deve ter 2 caracteres.")
     @Column(nullable = false, length = 2)
     private String uf;
     @NotBlank(message = "CEP é obrigatório")
-    @Column(nullable = false)
+    @Column(nullable = false, length = 10)
     private String cep;
 
     // Um cliente pode ter vários pedidos; a FK cliente_id fica na tabela pedidos

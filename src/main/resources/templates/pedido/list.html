@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security6">
 <head>
     <meta charset="UTF-8">
     <title>Listagem de Pedidos</title>
@@ -18,7 +18,7 @@
             <th>Nº</th>
             <th>Cliente</th>
             <th>Data</th>
-            <th>Itens</th>
+            <th>Produtos</th>
             <th>Valor Total</th>
             <th>Status</th>
             <th>Versão</th>
@@ -33,7 +33,11 @@
             <td th:text="${pedido.id}"></td>
             <td th:text="${pedido.cliente.nome}"></td>
             <td th:text="${#temporals.format(pedido.dataPedido, 'dd/MM/yyyy HH:mm')}"></td>
-            <td th:text="${#lists.size(pedido.itens)}"></td>
+            <td>
+                <span th:if="${#lists.isEmpty(pedido.itens)}" class="text-muted">Sem itens</span>
+                <div th:each="item : ${pedido.itens}"
+                     th:text="${item.quantidade + 'x ' + item.produto.nome}"></div>
+            </td>
             <td th:text="${'R$ ' + #numbers.formatDecimal(pedido.valorTotal, 1, 'POINT', 2, 'COMMA')}"></td>
             <td>
                 <span class="badge"

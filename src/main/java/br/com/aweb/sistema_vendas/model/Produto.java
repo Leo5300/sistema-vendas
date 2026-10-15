@@ -38,11 +38,12 @@ public class Produto {
 
     @NotNull(message = "Preço é obrigatório.")
     @Positive(message = "O valor deve ser maior que zero.")
-    @Column(nullable = false)
+    @Column(nullable = false, precision = 10, scale = 2)
     private BigDecimal preco;
 
     @NotNull(message = "Quantidade é obrigatório.")
     @PositiveOrZero(message = "O valor deve ser maior ou igual a zero.")
+    @Column(nullable = false)
     private Integer quantidadeEmEstoque;
 
     @Version

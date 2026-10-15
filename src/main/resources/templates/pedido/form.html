@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security6">
 <head>
     <meta charset="UTF-8">
     <title>Novo Pedido</title>
@@ -12,7 +12,9 @@
     <h1>Novo Pedido</h1>
 
     <div class="alert alert-warning" th:if="${#lists.isEmpty(clientes)}">
-        Nenhum cliente cadastrado. <a th:href="@{/clientes/novo}">Cadastre um cliente</a> antes de criar um pedido.
+        Nenhum cliente cadastrado.
+        <span sec:authorize="hasRole('ADMIN')"><a th:href="@{/clientes/novo}">Cadastre um cliente</a> antes de criar um pedido.</span>
+        <span sec:authorize="!hasRole('ADMIN')">Peça a um administrador para cadastrar o cliente.</span>
     </div>
 
     <form th:action="@{/pedidos/novo}" method="post">
