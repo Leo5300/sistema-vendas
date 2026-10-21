@@ -35,12 +35,10 @@ public class Usuario implements UserDetails {
     @Column(nullable = false)
     private String nome;
 
-    // O e-mail é o "username" usado no login
     @NotBlank
     @Column(nullable = false, unique = true)
     private String email;
 
-    // Sempre gravada com hash BCrypt
     @NotBlank
     @Column(nullable = false)
     private String senha;
@@ -49,7 +47,6 @@ public class Usuario implements UserDetails {
     @Column(nullable = false)
     private UsuarioRole role;
 
-    // O prefixo ROLE_ permite usar hasRole('ADMIN') nas regras de acesso
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority("ROLE_" + role.name()));

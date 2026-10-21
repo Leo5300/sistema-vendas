@@ -1,6 +1,4 @@
 -- Usuários de teste (senhas gravadas com hash BCrypt)
--- ADMIN:  admin@vendas.com    / admin123
--- PADRAO: vendedor@vendas.com / vendedor123
 -- Rodar depois que a aplicação subir pela primeira vez (a tabela usuarios é criada pelo JPA)
 
 INSERT INTO usuarios (nome, email, senha, role) VALUES

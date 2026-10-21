@@ -16,7 +16,6 @@ public class UsuarioService implements UserDetailsService {
         this.usuarioRepository = usuarioRepository;
     }
 
-    // Chamado pelo Spring Security no POST /login (username = e-mail)
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return usuarioRepository.findByEmailIgnoreCase(username)
